@@ -1,11 +1,12 @@
-<?
+<?php
 
-use app\Http\Controllers\Api\V1\StatusController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\Api\V1\TaskController;
-use app\Http\Controllers\Api\V1\User_TasksController;
-use app\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\StatusController;
+use App\Http\Controllers\Api\V1\TaskController;
+use App\Http\Controllers\Api\V1\User_TasksController;
+use App\Http\Controllers\Api\V1\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'v1'],function(){
     Route::apiResource('tasks',TaskController::class);
 });
-
 Route::group(['prefix'=>'v1'],function(){
     Route::apiResource('status',StatusController::class);
 });
