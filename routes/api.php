@@ -42,7 +42,4 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('register','register');
 });
 
-//protected routes
-Route::group(['middleware'=>['auth:santum']],function(){
-    Route::post('/logout',[AuthController::class,'logout']);
-});
+
