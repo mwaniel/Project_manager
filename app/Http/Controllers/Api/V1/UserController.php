@@ -18,6 +18,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'name'=>'required|string',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|min:6',
         ]);
@@ -29,6 +30,7 @@ class UserController extends Controller
         }
 
         $user = new User();
+        $user->name=$request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->save();
@@ -78,6 +80,7 @@ class UserController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
+            'name'=>'requred',
             'email' => 'required|unique:users,email,'.$id.'|email',
             'password' => 'required|min:6',
         ]);
@@ -88,6 +91,7 @@ class UserController extends Controller
             ], 422);
         }
 
+        $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->save();

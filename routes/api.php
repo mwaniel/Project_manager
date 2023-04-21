@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\StatusController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\User_TasksController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,13 @@ Route::group(['prefix'=>'v1'],function(){
 });
 Route::group(['prefix'=>'v1'],function(){
     Route::apiResource('user_tasks',User_TasksController::class);
+});
+
+Route::post('/register',[AuthController::class,'register']);
+
+Route::post('/login',[AuthController::class,'login']);
+
+//protected routes
+Route::group(['middleware'=>['auth:santum']],function(){
+    Route::post('/logout',[AuthController::class,'logout']);
 });
